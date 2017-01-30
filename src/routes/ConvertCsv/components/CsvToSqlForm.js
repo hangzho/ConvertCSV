@@ -13,7 +13,7 @@ export class CsvToSqlForm extends Component {
     convertCsv(type, values) {
         switch (type) {
             case CSV_TO_SQL_INSERT:
-                this.props.csvToSqlInsert(values.csvInput);
+                this.props.csvToSqlInsert(values);
         }
     }
 
@@ -22,6 +22,14 @@ export class CsvToSqlForm extends Component {
 
         return (
             <div className="">
+                <div className="form-horizontal">
+                    <div className="form-group">
+                        <label htmlFor="tableName" className="col-sm-2 control-label">Table Name</label>
+                        <div className="col-sm-5">
+                            <Field name="tableName" id="tableName" className="form-control" component="input" type="text"></Field>
+                        </div>
+                    </div>
+                </div>
                 <div className="form-horizontal">
                     <div className="form-group">
                         <label htmlFor="csvInput" className="col-sm-2 control-label">CSV Input</label>

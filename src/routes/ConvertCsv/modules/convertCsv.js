@@ -24,17 +24,15 @@ export function updateSqlOutput(sqlOutput) {
  returns a function for lazy evaluation. It is incredibly useful for
  creating async actions, especially when combined with redux-thunk! */
 
-export const csvToSqlInsert = (csvInput) => {
+export const csvToSqlInsert = ({csvInput, tableName='mytable'}) => {
     return (dispatch) => {
         parse(csvInput, function (err, output) {
-            console.log('Output', output);
             let sqlOutputTemp = '';
             const headers = output[0].join(',');
             for (let i = 1; i < output.length; i++) {
-                sqlOutputTemp += `INSERT INTO mytable(${headers}) VALUES (${output[i].join(',')});\n`
+                sqlOutputTemp += `INSERT INTO ${tableName}(${headers}) VALUES (${output[i].join(',')});\n`
             }
             dispatch(updateSqlOutput(sqlOutputTemp));
-            console.log(sqlOutputTemp);
         });
     }
 };
