@@ -8,7 +8,7 @@ export const ConvertCsv = (props) => (
             <div className="form-group">
                 <label htmlFor="sqlOutput" className="col-sm-2 control-label">SQL Output</label>
                 <div className="col-sm-10">
-                    <textarea value={props.sqlOutput} name="sqlOutput" id="sqlOutput" className="form-control" rows="10"></textarea>
+                    <textarea value={props.sqlOutput} readOnly onClick={event => event.target.select()} name="sqlOutput" id="sqlOutput" className="form-control" rows="10"></textarea>
                 </div>
             </div>
         </div>
