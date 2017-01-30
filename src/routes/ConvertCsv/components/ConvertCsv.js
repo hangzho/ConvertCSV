@@ -1,5 +1,5 @@
 import React from 'react';
-import CsvToSqlForm from './CsvToSqlForm'
+import CsvToSqlForm from '../containers/CsvToSqlFormContainer'
 
 export const ConvertCsv = (props) => (
     <div className="">
