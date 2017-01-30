@@ -38,7 +38,8 @@ class CsvToSqlForm extends Component {
 }
 
 CsvToSqlForm = reduxForm({
-    form: 'csvToSqlForm'
+    form: 'csvToSqlForm',
+    destroyOnUnmount: false
 })(CsvToSqlForm);
 
 CsvToSqlForm = connect(null, { csvToSqlInsert })(CsvToSqlForm);
