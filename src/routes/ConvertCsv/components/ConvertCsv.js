@@ -1,22 +1,22 @@
 import React from 'react';
+import CsvToSqlForm from './CsvToSqlForm'
 
-export const Counter = (props) => (
-  <div style={{ margin: '0 auto' }} >
-    <h2>Counter: {props.counter}</h2>
-    <button className='btn btn-default' onClick={props.increment}>
-      Increment
-    </button>
-    {' '}
-    <button className='btn btn-default' onClick={props.doubleAsync}>
-      Double (Async)
-    </button>
-  </div>
+export const ConvertCsv = (props) => (
+    <div className="">
+        <CsvToSqlForm></CsvToSqlForm>
+        <div style={{marginTop : '1em'}} className="form-horizontal">
+            <div className="form-group">
+                <label htmlFor="sqlOutput" className="col-sm-2 control-label">CSV Input</label>
+                <div className="col-sm-10">
+                    <textarea value={props.sqlOutput} name="sqlOutput" id="sqlOutput" className="form-control" rows="10"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
 );
 
-Counter.propTypes = {
-    counter     : React.PropTypes.number.isRequired,
-    doubleAsync : React.PropTypes.func.isRequired,
-    increment   : React.PropTypes.func.isRequired
+ConvertCsv.propTypes = {
+    sqlOutput: React.PropTypes.string
 };
 
-export default Counter;
+export default ConvertCsv;
