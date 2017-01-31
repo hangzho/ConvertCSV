@@ -38,6 +38,31 @@ export class CsvToSqlForm extends Component {
                         </div>
                     </div>
                 </div>
+                <div className="form-horizontal">
+                    <div className="form-group">
+                        <label className="col-sm-2 control-label">Quote Table Names</label>
+                        <div className="col-sm-10">
+                            <label className="checkbox-inline pull-left"><Field name="quelOptions.autoQuoteTableNames" component="input" type="checkbox" value="true"></Field>Include </label>
+                        </div>
+                    </div>
+                </div>
+                <div className="form-horizontal">
+                    <div className="form-group">
+                        <label className="col-sm-2 control-label">Quote Field Name</label>
+                        <div className="col-sm-10">
+                            <label className="checkbox-inline pull-left"><Field name="quelOptions.autoQuoteFieldNames" component="input" type="checkbox" value="true"></Field>Enclose </label>
+                        </div>
+                    </div>
+                </div>
+                <div className="form-horizontal">
+                    <div className="form-group">
+                        <label className="col-sm-2 control-label">Quote Type</label>
+                        <div className="col-sm-10">
+                            <label className="radio-inline pull-left"><Field name="quelOptions.nameQuoteCharacter" component="input" type="radio" value="`"></Field>Backtick (`name`)</label>
+                            <label className="radio-inline pull-left"><Field name="quelOptions.nameQuoteCharacter" component="input" type="radio" value="'"></Field>Single Quotes ('name')</label>
+                        </div>
+                    </div>
+                </div>
                 <button className="btn btn-success" onClick={handleSubmit((values) => this.convertCsv(CSV_TO_SQL_INSERT, values))}>Convert to SQL Insert</button>
             </div>
         )
