@@ -1,4 +1,5 @@
 import { parse } from 'csv'
+import squel from 'squel'
 
 // ------------------------------------
 // Constants
@@ -28,9 +29,14 @@ export const csvToSqlInsert = ({csvInput, tableName='mytable'}) => {
     return (dispatch) => {
         parse(csvInput, function (err, output) {
             let sqlOutputTemp = '';
-            const headers = output[0].join(',');
+            const headers = output[0];
+            const length = headers.length;
             for (let i = 1; i < output.length; i++) {
-                sqlOutputTemp += `INSERT INTO ${tableName}(${headers}) VALUES (${output[i].join(',')});\n`
+                let tempInsert = squel.insert().into(tableName);
+                for (let j = 0; j < length; j++) {
+                    tempInsert.set(headers[j], output[i][j]);
+                }
+                sqlOutputTemp = sqlOutputTemp + tempInsert.toString() + '\n';
             }
             dispatch(updateSqlOutput(sqlOutputTemp));
         });
