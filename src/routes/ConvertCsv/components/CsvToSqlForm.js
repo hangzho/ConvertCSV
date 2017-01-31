@@ -42,7 +42,7 @@ export class CsvToSqlForm extends Component {
                     <div className="form-group">
                         <label className="col-sm-2 control-label">Quote Table Names</label>
                         <div className="col-sm-10">
-                            <label className="checkbox-inline pull-left"><Field name="quelOptions.autoQuoteTableNames" component="input" type="checkbox" value="true"></Field>Include </label>
+                            <label className="checkbox-inline pull-left"><Field name="squelOptions.autoQuoteTableNames" component="input" type="checkbox" value="true"></Field>Include </label>
                         </div>
                     </div>
                 </div>
@@ -50,7 +50,7 @@ export class CsvToSqlForm extends Component {
                     <div className="form-group">
                         <label className="col-sm-2 control-label">Quote Field Name</label>
                         <div className="col-sm-10">
-                            <label className="checkbox-inline pull-left"><Field name="quelOptions.autoQuoteFieldNames" component="input" type="checkbox" value="true"></Field>Enclose </label>
+                            <label className="checkbox-inline pull-left"><Field name="squelOptions.autoQuoteFieldNames" component="input" type="checkbox" value="true"></Field>Include </label>
                         </div>
                     </div>
                 </div>
@@ -58,8 +58,8 @@ export class CsvToSqlForm extends Component {
                     <div className="form-group">
                         <label className="col-sm-2 control-label">Quote Type</label>
                         <div className="col-sm-10">
-                            <label className="radio-inline pull-left"><Field name="quelOptions.nameQuoteCharacter" component="input" type="radio" value="`"></Field>Backtick (`name`)</label>
-                            <label className="radio-inline pull-left"><Field name="quelOptions.nameQuoteCharacter" component="input" type="radio" value="'"></Field>Single Quotes ('name')</label>
+                            <label className="radio-inline pull-left"><Field name="squelOptions.nameQuoteCharacter" component="input" type="radio" value="`" ></Field>Backtick (`name`)</label>
+                            <label className="radio-inline pull-left"><Field name="squelOptions.nameQuoteCharacter" component="input" type="radio" value="'"></Field>Single Quotes ('name')</label>
                         </div>
                     </div>
                 </div>
