@@ -36,7 +36,7 @@ export const csvToSqlInsert = ({csvInput, tableName='mytable', squelOptions}) =>
                 for (let j = 0; j < length; j++) {
                     tempInsert.set(headers[j], output[i][j]);
                 }
-                sqlOutputTemp = sqlOutputTemp + tempInsert.toString() + '\n';
+                sqlOutputTemp = sqlOutputTemp + tempInsert.toString() + ';\n';
             }
             dispatch(updateSqlOutput(sqlOutputTemp));
         });
