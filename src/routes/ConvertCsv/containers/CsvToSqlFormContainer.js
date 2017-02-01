@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { csvToSqlInsert } from '../modules/convertCsv'
+import { csvToSqlInsert, fileOnLoad } from '../modules/convertCsv'
 
 /*  This is a container component. Notice it does not contain any JSX,
     nor does it import React. This component is **only** responsible for
@@ -13,7 +13,8 @@ import CsvToSqlForm from '../components/CsvToSqlForm';
     implementing our wrapper around increment; the component doesn't care   */
 
 const mapDispatchToProps = {
-    csvToSqlInsert
+    csvToSqlInsert,
+    fileOnLoad
 };
 
 const mapStateToProps =  null;
