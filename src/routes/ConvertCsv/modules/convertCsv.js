@@ -1,4 +1,4 @@
-import { parse } from 'csv'
+import * as Papa from 'papaparse'
 import squel from 'squel'
 
 // ------------------------------------
@@ -25,20 +25,25 @@ export function updateSqlOutput(sqlOutput) {
  returns a function for lazy evaluation. It is incredibly useful for
  creating async actions, especially when combined with redux-thunk! */
 
-export const csvToSqlInsert = ({csvInput, tableName='mytable', squelOptions}) => {
+export const csvToSqlInsert = ({csvInput = '', tableName = 'mytable', squelOptions}) => {
     return (dispatch) => {
-        parse(csvInput, function (err, output) {
-            let sqlOutputTemp = '';
-            const headers = output[0];
-            const length = headers.length;
-            for (let i = 1; i < output.length; i++) {
-                let tempInsert = squel.insert({...squelOptions}).into(tableName);
-                for (let j = 0; j < length; j++) {
-                    tempInsert.set(headers[j], output[i][j]);
+        Papa.parse(csvInput, {
+            complete: function ({data}) {
+                if (csvInput === '') {
+                    return
                 }
-                sqlOutputTemp = sqlOutputTemp + tempInsert.toString() + ';\n';
+                let sqlOutputTemp = '';
+                const headers = data[0];
+                const length = headers.length;
+                for (let i = 1; i < data.length; i++) {
+                    let tempInsert = squel.insert({...squelOptions}).into(tableName);
+                    for (let j = 0; j < length; j++) {
+                        tempInsert.set(headers[j], data[i][j]);
+                    }
+                    sqlOutputTemp = sqlOutputTemp + tempInsert.toString() + ';\n';
+                }
+                dispatch(updateSqlOutput(sqlOutputTemp));
             }
-            dispatch(updateSqlOutput(sqlOutputTemp));
         });
     }
 };
@@ -68,7 +73,7 @@ function handleUpdateSqlOutput(state, action) {
 const initialState = {
     sqlOutput: ''
 };
-export default function csvReducer (state = initialState, action) {
+export default function csvReducer(state = initialState, action) {
     const handler = ACTION_HANDLERS[action.type];
 
     return handler ? handler(state, action) : state;
