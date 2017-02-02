@@ -31,7 +31,7 @@ export const csvToSqlInsert = ({ csvInput = '', tableName = 'mytable', squelOpti
                     return
                 }
 
-                let formatedCountsInChunk = (countsInChunk + 0) < 1 ? 1 : (countsInChunk + 0);
+                let formatedCountsInChunk = (1 * countsInChunk) < 1 ? 1 : (1 * countsInChunk);
                 let tempSqlOutput = '', tempArray, tempInsert;
                 for (let i = 0; i < data.length; i += formatedCountsInChunk) {
                     tempArray = data.slice(i, i + formatedCountsInChunk);
