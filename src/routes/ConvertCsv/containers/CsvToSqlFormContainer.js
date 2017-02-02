@@ -17,7 +17,9 @@ const mapDispatchToProps = {
     fileOnLoad
 };
 
-const mapStateToProps =  null;
+const mapStateToProps = (state) => ({
+    initialValues: { countsInChunk: 1}
+});
 
 /*  Note: mapStateToProps is where you should use `reselect` to create selectors, ie:
 

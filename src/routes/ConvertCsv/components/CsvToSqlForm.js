@@ -50,17 +50,10 @@ export class CsvToSqlForm extends Component {
                 </div>
                 <div className="form-horizontal">
                     <div className="form-group">
-                        <label className="col-sm-2 control-label">Quote Table Names</label>
+                        <label className="col-sm-2 control-label">Quote </label>
                         <div className="col-sm-10">
-                            <label className="checkbox-inline pull-left"><Field name="squelOptions.autoQuoteTableNames" component="input" type="checkbox" value="true"></Field>Include</label>
-                        </div>
-                    </div>
-                </div>
-                <div className="form-horizontal">
-                    <div className="form-group">
-                        <label className="col-sm-2 control-label">Quote Field Name</label>
-                        <div className="col-sm-10">
-                            <label className="checkbox-inline pull-left"><Field name="squelOptions.autoQuoteFieldNames" component="input" type="checkbox" value="true"></Field>Include</label>
+                            <label className="checkbox-inline pull-left"><Field name="squelOptions.autoQuoteTableNames" component="input" type="checkbox" value="true"></Field>Quote Table Names</label>
+                            <label className="checkbox-inline pull-left"><Field name="squelOptions.autoQuoteFieldNames" component="input" type="checkbox" value="true"></Field>Quote Field Name</label>
                         </div>
                     </div>
                 </div>
@@ -71,6 +64,15 @@ export class CsvToSqlForm extends Component {
                             <label className="radio-inline pull-left"><Field name="squelOptions.nameQuoteCharacter" component="input" type="radio" value="`"></Field>Backtick(`name`)</label>
                             <label className="radio-inline pull-left"><Field name="squelOptions.nameQuoteCharacter" component="input" type="radio" value="'"></Field>Single Quotes('name')</label>
                         </div>
+                    </div>
+                </div>
+                <div className="form-horizontal">
+                    <div className="form-group">
+                        <label className="col-sm-2 control-label">Counts In a Chunk</label>
+                        <div className="col-sm-2">
+                            <Field className="form-control" name="countsInChunk" component="input" type="number" min="1" step="1"></Field>
+                        </div>
+                        <p className="pull-left">How many rows you want in a 'Insert' statement.</p>
                     </div>
                 </div>
                 <button className="btn btn-success" onClick={handleSubmit((values) => this.convertCsv(CSV_TO_SQL_INSERT, values))}>Convert to SQL Insert</button>

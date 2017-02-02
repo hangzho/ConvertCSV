@@ -23,25 +23,25 @@ export function updateSqlOutput(sqlOutput) {
  returns a function for lazy evaluation. It is incredibly useful for
  creating async actions, especially when combined with redux-thunk! */
 
-export const csvToSqlInsert = ({ csvInput = '', tableName = 'mytable', squelOptions }) => {
+export const csvToSqlInsert = ({ csvInput = '', tableName = 'mytable', squelOptions, countsInChunk = 1 }) => {
     return (dispatch) => {
         Papa.parse(csvInput, {
             complete: function ({ data }) {
                 if (csvInput === '') {
                     return
                 }
-                let sqlOutputTemp = '';
-                const headers = data[0];
-                const length = headers.length;
-                for (let i = 1; i < data.length; i++) {
-                    let tempInsert = squel.insert({ ...squelOptions }).into(tableName);
-                    for (let j = 0; j < length; j++) {
-                        tempInsert.set(headers[j], data[i][j]);
-                    }
-                    sqlOutputTemp = sqlOutputTemp + tempInsert.toString() + ';\n';
+
+                let formatedCountsInChunk = (countsInChunk + 0) < 1 ? 1 : (countsInChunk + 0);
+                let tempSqlOutput = '', tempArray, tempInsert;
+                for (let i = 0; i < data.length; i += formatedCountsInChunk) {
+                    tempArray = data.slice(i, i + formatedCountsInChunk);
+                    tempInsert = squel.insert({ ...squelOptions }).into(tableName).setFieldsRows(tempArray).toString();
+                    tempSqlOutput += tempInsert + ';\n';
                 }
-                dispatch(updateSqlOutput(sqlOutputTemp));
-            }
+
+                dispatch(updateSqlOutput(tempSqlOutput));
+            },
+            header: true
         });
     }
 };
