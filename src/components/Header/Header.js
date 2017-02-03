@@ -3,20 +3,27 @@ import { IndexLink, Link } from 'react-router';
 import './Header.scss';
 
 export const Header = () => (
-    <div >
-        <h1>React Redux Starter Kit</h1>
-        <IndexLink to='/' className='btn btn-default' activeClassName='btn-primary'>
-            Home
-        </IndexLink>
-        {' · '}
-        <Link to='/counter' className='btn btn-default' activeClassName='btn-primary'>
-            Counter
-        </Link>
-        {' · '}
-        <Link to='/convertCsv' className='btn btn-default' activeClassName='btn-primary'>
-            Convert CSV
-        </Link>
-    </div>
+
+    <nav className="navbar navbar-default">
+        <div className="container-fluid">
+            <div className="navbar-header">
+                <IndexLink className="navbar-brand" to='/'>Convert CSV to SQL</IndexLink>
+            </div>
+            <div id="navbar" className="navbar-collapse collapse">
+                <ul className="nav navbar-nav">
+                    <li>
+                        <IndexLink to='/' activeClassName='route--active'>Home</IndexLink>
+                    </li>
+                    <li>
+                        <Link to='/counter' activeClassName='route--active'>Counter</Link>
+                    </li>
+                    <li>
+                        <Link to='/convertCsv' activeClassName='route--active'>Convert CSV</Link>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 );
 
 export default Header;
